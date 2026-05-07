@@ -8,7 +8,7 @@ Usage:
 Options:
     -i, --input     File to recognize (required)
     -o, --output    Output directory for results (required)
-    -p, --params    OCR parameters as JSON string (default: {"ocr":"tesseract","lang":"rus"})
+    -p, --params    OCR parameters as JSON string (default: {})
     --host          DreamOCR service URL (default: http://localhost:9900 or OCR_HOST env)
     -k, --key       API key (default: demo-key or OCR_KEY env)
 """
@@ -31,7 +31,7 @@ def parse_args():
     parser.add_argument('-o', '--output', required=True, help='Output directory for results')
     parser.add_argument(
         '-p', '--params',
-        default='{"ocr":"tesseract","lang":"rus"}',
+        default='{}',
         help='OCR parameters as JSON string (default: %(default)s)',
     )
     parser.add_argument(

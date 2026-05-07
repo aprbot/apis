@@ -14,13 +14,13 @@ import java.nio.file.Paths;
  * Options:
  *   -i, --input   File to recognize (required)
  *   -o, --output  Output directory for results (required)
- *   -p, --params  OCR parameters as JSON string (default: {"ocr":"tesseract","lang":"rus"})
+ *   -p, --params  OCR parameters as JSON string (default: {})
  *   --host        DreamOCR service URL (or OCR_HOST env)
  *   -k, --key     API key (or OCR_KEY env)
  */
 public class OcrExample {
 
-    private static final String DEFAULT_PARAMS = "{\"ocr\":\"tesseract\",\"lang\":\"rus\"}";
+    private static final String DEFAULT_PARAMS = "{}";
     private static final int POLL_INTERVAL_SECONDS = 4;
     private static final int TIMEOUT_SECONDS = 300;
 
