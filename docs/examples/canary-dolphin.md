@@ -30,3 +30,9 @@ export DOLPHIN_DOCUMENT=ks3.pdf DOLPHIN_DOCTYPE=rus.reference.ks3.type1
 export DOLPHIN_EXPECTED_TEXT='Вектор'
 python3 -m pytest -q python/tests/check_published_models.py
 ```
+
+Чтобы проверить тарифы, экспортируйте JWT обычного пользователя кабинета в `AIMOS_CABINET_TOKEN`. Проверка читает каталог и сверяет цены всех трёх видов расхода и доступность выпуска ключа.
+
+```bash
+python3 -m pytest -q python/tests/check_catalog_prices.py
+```
