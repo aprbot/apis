@@ -61,7 +61,7 @@ class OcrClient:
         if response.status_code != 200:
             raise RuntimeError(f"Recognize failed: HTTP {response.status_code}: {response.text}")
         result = response.json()
-        if 'error' in result:
+        if result.get('error'):
             raise RuntimeError(f"Recognize failed: {result['error']}")
         return result
 

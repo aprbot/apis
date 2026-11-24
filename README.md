@@ -101,6 +101,9 @@ Most examples support `--setup` to auto-provision resources:
 cd java && mvn compile -q
 ```
 
+
+[Примеры Canary и Dolphin и проверка через API](docs/examples/canary-dolphin.md)
+
 ## License
 
 Copyright (c) 2023 DocuTable Inc. / ApRbot
