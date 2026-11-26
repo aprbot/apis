@@ -6,18 +6,24 @@ from pathlib import Path
 import subprocess
 import sys
 
+import pytest
+
 
 PYTHON = Path(__file__).resolve().parents[1] / "aprbot"
 
 
-def test_canary_transcribes_reference_speech():
+@pytest.mark.parametrize("flags,reference", [
+    ([], "CANARY_EXPECTED_TEXT"),
+    (["--translate"], "CANARY_EXPECTED_TRANSLATION"),
+])
+def test_canary_speech(flags, reference):
     result = subprocess.run(
         [sys.executable, str(PYTHON / "aimos/canary_example.py"),
          os.environ["CANARY_AUDIO"], "--language", os.environ["CANARY_LANGUAGE"],
-         "--host", os.environ["AIMOS_HOST"]],
+         "--host", os.environ["AIMOS_HOST"], *flags],
         check=True, capture_output=True, text=True, timeout=130,
     )
-    expected = os.environ["CANARY_EXPECTED_TEXT"].strip().casefold()
+    expected = os.environ[reference].strip().casefold()
     assert expected and expected in result.stdout.casefold()
 
 

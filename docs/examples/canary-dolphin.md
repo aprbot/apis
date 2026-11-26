@@ -10,6 +10,12 @@
 python3 python/aprbot/aimos/canary_example.py speech.wav --host "$AIMOS_HOST" --language ru
 ```
 
+Для перевода записи на английский добавьте `--translate`. Пример передаст тот же файл и язык источника в `POST /v1/audio/translations`.
+
+```bash
+python3 python/aprbot/aimos/canary_example.py speech.ogg --host "$AIMOS_HOST" --language ru --translate
+```
+
 ## Dolphin OCR
 
 Пример загружает документ в `aprbot/dolphin`, отправляет его на распознавание и опрашивает статус. Для справки КС-3 укажите идентификатор типа документа `rus.reference.ks3.type1`.
@@ -22,10 +28,11 @@ OCR_KEY="$DOLPHIN_API_KEY" python3 python/aprbot/dreamocr/ocr_example.py \
 
 ## Проверка через рабочий API
 
-Укажите фразу из записи и известное значение поля из документа. Проверка отправляет оба файла в выбранный сервис, вызывает модели и скачивает JSON завершённого задания Dolphin.
+Укажите фразу из записи, её перевод и известное значение поля из документа. Проверка отправляет оба файла в выбранный сервис, вызывает модели и скачивает JSON завершённого задания Dolphin.
 
 ```bash
 export CANARY_AUDIO=speech.wav CANARY_LANGUAGE=ru CANARY_EXPECTED_TEXT='электроника'
+export CANARY_EXPECTED_TRANSLATION='electronics'
 export DOLPHIN_DOCUMENT=ks3.pdf DOLPHIN_DOCTYPE=rus.reference.ks3.type1
 export DOLPHIN_EXPECTED_TEXT='Вектор'
 python3 -m pytest -q python/tests/check_published_models.py
